@@ -1,3 +1,4 @@
+
 const lista = document.querySelector(".lista");
 const botoes = document.querySelectorAll("[data-mostrar]");
 
