@@ -21,6 +21,18 @@ const subtrair = document.querySelector('#subtrair');
 const somar = document.querySelector('#somar');
 const estatisticas = document.querySelectorAll("[data-estatistica]");
 
+const cor = document.querySelector("[data-corRobo]")
+const cores = ["Azul", "Branco", "Amarelo", "Rosa"]
+
+const robo = document.querySelector("#imagem-robo");
+const controle = document.querySelectorAll("[data-controle]");
+
+let contador = 0;
+
+
+console.log(cor.attributes.src.nodeValue)
+console.log(cor.dataset.corrobo)
+
 const pecas = {
     "bracos": {
         "forca": 29,
@@ -56,7 +68,14 @@ const pecas = {
 }
 
 
-const controle = document.querySelectorAll("[data-controle]");
+robo.addEventListener("click", ()=>{    
+    trocarCor(cor.attributes.src.nodeValue, contador);
+    if(contador<3){
+        contador++
+    }else{
+        contador = 0;
+    }
+})
 
 controle.forEach( (elemento) => {
     elemento.addEventListener("click", (evento) => {
@@ -78,11 +97,13 @@ function mudarValor(operacao, controle){
     }
 }
 function atualizaEstatisticas(peca){
-    // pecas[peca]
-
     estatisticas.forEach((elemento) => {
         elemento.textContent = parseInt(elemento.textContent) + pecas[peca][elemento.dataset.estatistica]
     })
+}
 
+function trocarCor(imagem, contador){    
+    imagem = "img/Robotron-"+cores[contador]+".png"
+    cor.attributes.src.nodeValue = imagem;    
 }
 
